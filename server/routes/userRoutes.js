@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router();
 const User = require("../models/userModel")
+const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
+
 
 router.post('/register', async(req, res) => {
 
@@ -60,9 +62,12 @@ router.post('/login', async(req, res) => {
             return
         }
 
+        const token = jwt.sign( {userId: user._id}, "Scaler_BMS", {expiresIn : "7d"} );
+
         res.send({
             success : true,
-            message : "Logged in successfully ✅"
+            message : "Logged in successfully ✅",
+            token : token
         })
 
     } catch (error) {
