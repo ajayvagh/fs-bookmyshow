@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require("../models/userModel")
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
+const authMiddleware = require('../middlewares/authMiddleware')
 
 
 router.post('/register', async(req, res) => {
@@ -75,5 +76,17 @@ router.post('/login', async(req, res) => {
     }
 })
 
+router.get('/get-current-user', authMiddleware, async (req, res) => {
+    // inform server if the token is valid or not
+    const user = await User.findById(req.body.userId).select("-password");
+    res.send({
+        success : true,
+        message : "You are Authorized",
+        data : user
+    })
+})
 
 module.exports = router;
+
+
+// Bearer token - you can send a JWT token from client to server using Bearer token [inside headers - Authorization]

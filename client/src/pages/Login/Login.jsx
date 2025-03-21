@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
 import { LoginUser } from '../../api/users';
+import { useNavigate} from 'react-router-dom'
 
 function Login() {
-    
+    const navigate = useNavigate();
     const onFinish = async (values) => {
         try {
             const response = await LoginUser(values);
@@ -16,9 +17,15 @@ function Login() {
             }
             
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
+
+    useEffect( () => {
+        if(localStorage.getItem('token')) {
+            navigate('/');
+        }
+    }, []);
 
     return (
         <header className='App-header'>
@@ -82,3 +89,14 @@ function Login() {
 }
 
 export default Login;
+
+
+/*
+- if user logged in only then route for homepage should be accesible
+- don't show login page if the user logged in
+- check the token in local storage
+- if token exist teke user to homepage
+- else ask to login
+- route for homepage should be protected
+- check for valid token
+*/
