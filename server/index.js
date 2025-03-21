@@ -5,6 +5,7 @@ const app = express();
 const cors = require('cors'); // ✅ Import cors
 const mongoose = require('mongoose');
 const userRoutes = require("./routes/userRoutes")
+const movieRoutes = require("./routes/movieRoutes")
 
 const dburl = process.env.MONGO_URI;
 
@@ -24,6 +25,8 @@ mongoose.connect(dburl)
 })
 
 app.use('/api/users', userRoutes);
+app.use('/api/movies', movieRoutes);
+
 
 app.listen(8000, () => {
     console.log("Server Started .. ✅")

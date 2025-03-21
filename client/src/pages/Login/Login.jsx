@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
 import { LoginUser } from '../../api/users';
 import { useNavigate} from 'react-router-dom'
+import { message } from "antd";
 
 function Login() {
     const navigate = useNavigate();
@@ -12,8 +13,10 @@ function Login() {
                 localStorage.setItem('token', response.token);
                 window.location.href = '/';             //redirect to homepage
                 console.log(response);
+                message.success("User Logged in")
             } else {
                 console.log(response.message);
+                message.error(response.message);
             }
             
         } catch (error) {

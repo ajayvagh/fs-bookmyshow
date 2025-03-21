@@ -16,7 +16,7 @@ router.post('/register', async(req, res) => {
             success : false,
             message : "User Already Exists ✅"
         });
-        return
+        return;
     }
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
@@ -60,7 +60,7 @@ router.post('/login', async(req, res) => {
                 success : false,
                 message : "Invalid email or password ❌"
             })
-            return
+            return;
         }
 
         const token = jwt.sign( {userId: user._id}, "Scaler_BMS", {expiresIn : "7d"} );
