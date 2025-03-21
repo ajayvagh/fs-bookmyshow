@@ -6,6 +6,8 @@ const cors = require('cors'); // ✅ Import cors
 const mongoose = require('mongoose');
 const userRoutes = require("./routes/userRoutes")
 const movieRoutes = require("./routes/movieRoutes")
+const theatreRoutes = require('./routes/theatreRoutes');
+const showRoutes = require('./routes/showRoutes');
 
 const dburl = process.env.MONGO_URI;
 
@@ -26,6 +28,8 @@ mongoose.connect(dburl)
 
 app.use('/api/users', userRoutes);
 app.use('/api/movies', movieRoutes);
+app.use('/api/theatres', theatreRoutes);
+app.use('/api/shows', showRoutes);
 
 
 app.listen(8000, () => {
