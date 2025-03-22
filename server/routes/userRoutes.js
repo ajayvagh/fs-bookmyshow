@@ -4,6 +4,7 @@ const User = require("../models/userModel")
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const authMiddleware = require('../middlewares/authMiddleware')
+require('dotenv').config();
 
 
 router.post('/register', async(req, res) => {
@@ -63,7 +64,7 @@ router.post('/login', async(req, res) => {
             return;
         }
 
-        const token = jwt.sign( {userId: user._id}, "Scaler_BMS", {expiresIn : "7d"} );
+        const token = jwt.sign( {userId: user._id}, process.env.JWT_SECRET, {expiresIn : "7d"} );
 
         res.send({
             success : true,

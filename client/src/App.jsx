@@ -5,6 +5,7 @@ import Admin from './pages/Admin';
 import Profile from './pages/Profile';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
+import SingleMovie from './pages/SingleMovie';
 
 function App() {
 
@@ -18,6 +19,12 @@ function App() {
             <Route path='/' element={
               <ProtectedRoute>
                 <Home />
+              </ProtectedRoute>
+            } />
+
+            <Route path='/movie/:id' element={
+              <ProtectedRoute>
+                <SingleMovie />
               </ProtectedRoute>
             } />
 
