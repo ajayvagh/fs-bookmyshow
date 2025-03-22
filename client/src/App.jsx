@@ -6,6 +6,7 @@ import Profile from './pages/Profile';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
 import SingleMovie from './pages/SingleMovie';
+import BookShow from "./pages/BookShow";
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
               </ProtectedRoute>
             } />
             <Route path='/login' element={<Login />} />
+            <Route path="/book-show/:id" element={<ProtectedRoute><BookShow /></ProtectedRoute>} />
             {/* <Route path='/register' element={<Register />} />  */}
 
           </Routes>

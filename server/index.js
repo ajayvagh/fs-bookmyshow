@@ -8,6 +8,7 @@ const userRoutes = require("./routes/userRoutes")
 const movieRoutes = require("./routes/movieRoutes")
 const theatreRoutes = require('./routes/theatreRoutes');
 const showRoutes = require('./routes/showRoutes');
+const bookingRoute = require('./routes/bookingRoute')
 
 const dburl = process.env.MONGO_URI;
 
@@ -30,6 +31,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/movies', movieRoutes);
 app.use('/api/theatres', theatreRoutes);
 app.use('/api/shows', showRoutes);
+app.use('/api/bookings', bookingRoute)
 
 
 app.listen(8000, () => {
