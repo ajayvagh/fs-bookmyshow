@@ -71,6 +71,8 @@ router.get('/get-all-theatres-by-movie', async (req, res) => {          //was po
                 uniqueTheatres.push({ ...show.theatre._doc, shows: showsOfThisTheatre });
             }
         });
+
+        
         res.send({
             success: true,
             message: 'Shows by theatre',
